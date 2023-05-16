@@ -1,0 +1,7 @@
+.movie-card
+{
+    display: flex;
+    flex-direction: column;
+    border-style: outset;
+    width: 200px;
+}

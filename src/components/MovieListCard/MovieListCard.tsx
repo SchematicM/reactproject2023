@@ -1,9 +1,20 @@
-import React from 'react';
+import React, {FC} from 'react';
 
-const MovieListCard = () => {
+import {IMovie} from "../../interfaces";
+import PosterPreview from "../PosterPreview/PosterPreview";
+import StarsRaiting from "../StarsRaiting/StarsRaiting";
+
+import './movieListCard.css';
+
+interface IProps{
+    movie: IMovie
+}
+const MovieListCard:FC<IProps> = ({movie}) => {
     return (
-        <div>
-            Here should be card with info about movie
+        <div className={'movie-card'}>
+            {movie.original_title}
+            <PosterPreview/>
+            <StarsRaiting/>
         </div>
     );
 };
