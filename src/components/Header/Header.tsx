@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {basePosterURL} from "../../constants";
@@ -8,6 +8,13 @@ import './header.css'
 
 
 const Header: FC = () => {
+    const [darkMode, setDarkMode] = useState(false);
+
+    const toggleDarkMode = () => {
+        setDarkMode(!darkMode);
+        console.log(darkMode);
+        document.getElementById("root")?.classList.toggle("dark");
+    };
     const {user} = useAppSelector(state => state.userReducer);
     const dispatch = useAppDispatch();
     useEffect(() => {
@@ -18,7 +25,7 @@ const Header: FC = () => {
         <header className={"main-header"}>
             <div className={'left-header'}>
             <h2>M O V I E S</h2>
-            <input type="checkbox" id="darkmode-toggle"/>
+            <input onClick={toggleDarkMode} type="checkbox" id="darkmode-toggle"/>
             <label htmlFor="darkmode-toggle"/>
             </div>
             <div className={'right-header'}>
