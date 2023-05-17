@@ -3,10 +3,10 @@ import React, {FC} from 'react';
 import {basePosterURL} from "../../constants";
 
 import './posterPreview.css';
-import {IMovie} from "../../interfaces";
+import {IMovies} from "../../interfaces";
 
 interface IProps{
-    movie: IMovie
+    movie: IMovies
 }
 
 const PosterPreview:FC<IProps> = ({movie}) => {

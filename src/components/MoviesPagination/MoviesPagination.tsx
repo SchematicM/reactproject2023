@@ -3,7 +3,7 @@ import {useAppSelector} from "../../hooks";
 import {useSearchParams} from "react-router-dom";
 
 const MoviesPagination:FC = () => {
-    const {page} = useAppSelector(state => state.moviesReducer);
+    const {page,total_pages} = useAppSelector(state => state.moviesReducer);
     const [,setQuery] = useSearchParams();
     const prev = () => {
         // @ts-ignore
@@ -16,7 +16,7 @@ const MoviesPagination:FC = () => {
     return (
         <div>
             <button disabled={page === 1} onClick={prev}>prev</button>
-            <button disabled={page===500} onClick={next}>next</button>
+            <button disabled={page===total_pages} onClick={next}>next</button>
         </div>
     );
 };

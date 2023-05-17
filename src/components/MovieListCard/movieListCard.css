@@ -1,7 +1,13 @@
-.movie-card
-{
+.movie-card {
     display: flex;
     flex-direction: column;
     border-style: outset;
     width: 200px;
+}
+
+.movie-info{
+    padding: 7px;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
 }

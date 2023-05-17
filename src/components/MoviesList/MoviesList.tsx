@@ -22,7 +22,6 @@ const MoviesList:FC = () => {
     }, [query])
     return (
         <div >
-            <h1>Here should be Movies List</h1>
             <div className={'movies-list'}>
                 {
                     results.map(movie => <MovieListCard key={movie.id} movie = {movie}/> )

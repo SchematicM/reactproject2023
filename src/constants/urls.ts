@@ -5,7 +5,7 @@ const token =
 const urls = {
     movies: {
         movies: '/discover/movie',
-
+        overview:'/movie/',
     },
     users: {
         me: '/account/19487661'

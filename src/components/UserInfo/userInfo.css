@@ -1,0 +1,15 @@
+.user {
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-top: 5vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.user-avatar > img {
+    width: 25vw;
+    min-width: 100px;
+    margin-right: 40px;
+    border-radius: 50%;
+
+}

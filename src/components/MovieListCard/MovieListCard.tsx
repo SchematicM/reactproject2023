@@ -1,20 +1,24 @@
 import React, {FC} from 'react';
 
-import {IMovie} from "../../interfaces";
+import {IMovies} from "../../interfaces";
 import PosterPreview from "../PosterPreview/PosterPreview";
 import StarsRaiting from "../StarsRaiting/StarsRating";
 
 import './movieListCard.css';
+import {useNavigate} from "react-router-dom";
 
 interface IProps{
-    movie: IMovie
+    movie: IMovies
 }
 const MovieListCard:FC<IProps> = ({movie}) => {
+    const navigate = useNavigate();
     return (
-        <div className={'movie-card'}>
-            {movie.original_title}
+        <div onClick={() => {navigate(`/overview/${movie.id}`);}} className={'movie-card'}>
             <PosterPreview movie={movie}/>
+            <div className={'movie-info'}>
+            {movie.original_title}
             <StarsRaiting rating={movie.vote_average}/>
+            </div>
         </div>
     );
 };

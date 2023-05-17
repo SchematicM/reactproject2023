@@ -12,18 +12,18 @@ const initialState: IState = {
     user: {
         avatar: {
             gravatar: {
-                hash: "abcdef12345",
+                hash: '',
             },
             tmdb: {
-                avatar_path: "/path/to/avatar.jpg",
+                avatar_path:"/g6Ms99t22AlLEfPeJ6ehsjLMTdf.jpg",
             },
         },
         id: 1,
-        iso_639_1: "en",
-        iso_3166_1: "US",
-        name: "John Doe",
+        iso_639_1: '',
+        iso_3166_1: '',
+        name: '',
         include_adult: false,
-        username: "johndoe",
+        username: '',
     }
 }
 
