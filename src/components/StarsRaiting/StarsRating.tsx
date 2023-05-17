@@ -1,34 +1,35 @@
 import React from 'react';
 
+import './starsRating.css'
+
 interface StarsRatingProps {
     rating: number;
-    totalStars: number;
 }
 
-const StarsRating: React.FC<StarsRatingProps> = ({ rating, totalStars }) => {
-    const filledStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
-
-    const emptyStars = totalStars - filledStars - (hasHalfStar ? 1 : 0);
+const StarsRating: React.FC<StarsRatingProps> = ({rating}) => {
+    const totalStars = 10;
 
     return (
-        <div className="star-rating">
-            {[...Array(filledStars)].map((_, index) => (
-                <span key={index} className="star-filled">
-          &#9733;
-        </span>
-            ))}
-            {hasHalfStar && (
-                <span className="star-half" aria-label="Half star">
-          &#9733;
-        </span>
-            )}
-            {[...Array(emptyStars)].map((_, index) => (
-                <span key={index} className="star-empty">
-          &#9734;
-        </span>
-            ))}
+        <div className="rating">
+            <div className={'rating-number'}>{rating}</div>
+            {[...Array(totalStars)].map((_, index) => {
+                const starValue = index + 1;
+                const filledStar = starValue <= rating || starValue - 0.5 === rating;
+                const colorRatingClass = rating >= 8 ? "green" : rating >= 6 ? "orange" : "red"
+                const starClassName = filledStar ? `star filled ${colorRatingClass}` : 'star';
+                const starIcon = filledStar ? '★' : '☆';
+
+                return (
+                    <span
+                        key={index}
+                        className={starClassName}
+                    >
+            {starIcon}
+          </span>
+                );
+            })}
         </div>
     );
 };
+
 export default StarsRating;

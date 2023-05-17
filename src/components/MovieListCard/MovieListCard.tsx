@@ -14,7 +14,7 @@ const MovieListCard:FC<IProps> = ({movie}) => {
         <div className={'movie-card'}>
             {movie.original_title}
             <PosterPreview movie={movie}/>
-            <StarsRaiting rating={movie.vote_average} totalStars={10}/>
+            <StarsRaiting rating={movie.vote_average}/>
         </div>
     );
 };
