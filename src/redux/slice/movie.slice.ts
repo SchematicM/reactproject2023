@@ -6,13 +6,11 @@ import {AxiosError} from "axios";
 interface IState {
     results: IMovie[],
     page: number,
-    poster: string
 }
 
 const initialState: IState = {
     results: [],
     page: 0,
-    poster:''
 }
 
 const getAll = createAsyncThunk<IPagination<IMovie>, void>(
@@ -27,18 +25,7 @@ const getAll = createAsyncThunk<IPagination<IMovie>, void>(
         }
     }
 );
-const getPoster = createAsyncThunk<string, string>(
-    'movieSlice/getPoster',
-    async (filePath: string, {rejectWithValue}) => {
-        try {
-            const {data} = await moviesService.getPoster(filePath);
-            return data;
-        } catch (e) {
-            const err = e as AxiosError;
-            return rejectWithValue(err.response?.data ?? 'Unknown error occurred');
-        }
-    }
-);
+
 const slice = createSlice({
     name: 'movieSlice',
     initialState,
@@ -49,15 +36,13 @@ const slice = createSlice({
             state.results = results;
             state.page = page;
         })
-            .addCase(getPoster.fulfilled, (state, action) => {
-            state.poster = action.payload;
-        })
+
 });
 
 const {actions, reducer: moviesReducer} = slice;
 const moviesActions = {
     ...actions,
-    getAll,getPoster
+    getAll
 };
 
 export {moviesReducer, moviesActions};

@@ -5,4 +5,4 @@ export * from './MovieInfo/MovieInfo';
 export * from './MovieListCard/MovieListCard';
 export * from './PosterPreview/PosterPreview';
 export * from './UserInfo/UserInfo';
-export * from './StarsRaiting/StarsRaiting';
+export * from './StarsRaiting/StarsRating';

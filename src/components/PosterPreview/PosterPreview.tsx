@@ -1,22 +1,18 @@
-import React, {FC, useEffect} from 'react';
-import {moviesActions} from "../../redux";
-import {useAppDispatch, useAppSelector} from "../../hooks";
+import React, {FC} from 'react';
+
+import {basePosterURL} from "../../constants";
+
+import './posterPreview.css';
+import {IMovie} from "../../interfaces";
+
 interface IProps{
-    filePath: string
+    movie: IMovie
 }
 
-const PosterPreview:FC<IProps>= ({filePath}) => {
-    const{poster} = useAppSelector(state => state.moviesReducer);
-    const dispatch = useAppDispatch();
-
-    useEffect(() => {
-            dispatch(moviesActions.getPoster(filePath))
-        },
-        []);
+const PosterPreview:FC<IProps> = ({movie}) => {
     return (
         <div>
-            <img src={poster} alt = 'poster'/>
-            {/*Here should be poster*/}
+            <img src={basePosterURL+movie.poster_path} alt = {movie.title + ' poster'}/>
         </div>
     );
 };
