@@ -28,14 +28,17 @@ const Header: FC = () => {
     }, []);
 
     useEffect(() => {
-            document.getElementById("root")?.classList.toggle('dark');
-
+        if (darkMode) {
+            document.getElementById("root")?.classList.add('dark');
+        } else {
+            document.getElementById("root")?.classList.remove('dark');
+        }
     }, [darkMode]);
 
     return (
         <header className={"main-header"}>
             <div className={'left-header'}>
-                <h2 onClick={() => { navigate(`/movies`); }}>M O V I E S</h2>
+                <h2 onClick={() => { navigate(`/movies?page=1`); }}>M O V I E S</h2>
                 <input onChange={toggleDarkMode} type="checkbox" id="darkmode-toggle" checked={darkMode} />
                 <label htmlFor="darkmode-toggle" />
             </div>
@@ -45,5 +48,6 @@ const Header: FC = () => {
         </header>
     );
 };
+
 
 export default Header;

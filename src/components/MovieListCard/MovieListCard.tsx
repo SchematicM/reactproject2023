@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 
 import {IMovies} from "../../interfaces";
 import PosterPreview from "../PosterPreview/PosterPreview";
-import StarsRaiting from "../StarsRaiting/StarsRating";
+import StarsRating from "../StarsRating/StarsRating";
 
 import './movieListCard.css';
 import {useNavigate} from "react-router-dom";
@@ -17,7 +17,7 @@ const MovieListCard:FC<IProps> = ({movie}) => {
             <PosterPreview movie={movie}/>
             <div className={'movie-info'}>
             {movie.original_title}
-            <StarsRaiting rating={movie.vote_average}/>
+            <StarsRating rating={movie.vote_average}/>
             </div>
         </div>
     );
