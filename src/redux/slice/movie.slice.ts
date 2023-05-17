@@ -13,11 +13,11 @@ const initialState: IState = {
     page: 0,
 }
 
-const getAll = createAsyncThunk<IPagination<IMovie>, void>(
+const getAll = createAsyncThunk<IPagination<IMovie>, number>(
     'movieSlice/getAll',
-    async (_, {rejectWithValue}) => {
+    async (page, {rejectWithValue}) => {
         try {
-            const {data} = await moviesService.getAll();
+            const {data} = await moviesService.getAll(page);
             return data;
         } catch (e) {
             const err = e as AxiosError;

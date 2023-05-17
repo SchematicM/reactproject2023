@@ -1,9 +1,22 @@
 import React, {FC} from 'react';
+import {useAppSelector} from "../../hooks";
+import {useSearchParams} from "react-router-dom";
 
 const MoviesPagination:FC = () => {
+    const {page} = useAppSelector(state => state.moviesReducer);
+    const [,setQuery] = useSearchParams();
+    const prev = () => {
+        // @ts-ignore
+        setQuery(prev1 => ({...prev1, page:+prev1.get('page')-1}))
+    }
+    const next = ()=>{
+        // @ts-ignore
+        setQuery(prev1 => ({...prev1, page:+prev1.get('page')+1}))
+    }
     return (
         <div>
-            Here should be pagination
+            <button disabled={page === 1} onClick={prev}>prev</button>
+            <button disabled={page===500} onClick={next}>next</button>
         </div>
     );
 };

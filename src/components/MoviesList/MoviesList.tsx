@@ -5,22 +5,28 @@ import {moviesActions} from "../../redux";
 import MovieListCard from "../MovieListCard/MovieListCard";
 
 import './moviesList.css'
+import {useSearchParams} from "react-router-dom";
 
 const MoviesList:FC = () => {
-const{results, page} = useAppSelector(state => state.moviesReducer);
-const dispatch = useAppDispatch();
+    const{results} = useAppSelector(state => state.moviesReducer);
+    const dispatch = useAppDispatch();
+    const [query, setQuery] = useSearchParams();
 
-useEffect(() => {
-        dispatch(moviesActions.getAll())
-    },
-    []);
+    useEffect(() => {
+        setQuery(prev => ({...prev, page: '1'}))
+    }, [])
+
+    useEffect(() => {
+       // @ts-ignore
+        dispatch( moviesActions.getAll(+query.get('page')) );
+    }, [query])
     return (
         <div >
-           <h1>Here should be Movies List</h1>
+            <h1>Here should be Movies List</h1>
             <div className={'movies-list'}>
-            {
-                results.map(movie => <MovieListCard key={movie.id} movie = {movie}/> )
-            }
+                {
+                    results.map(movie => <MovieListCard key={movie.id} movie = {movie}/> )
+                }
             </div>
         </div>
     );
