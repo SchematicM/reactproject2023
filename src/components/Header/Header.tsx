@@ -15,10 +15,14 @@ const Header: FC = () => {
         dispatch(userActions.getMe());
     }, [])
     return (
-        <header>
+        <header className={"main-header"}>
+            <div className={'left-header'}>
             <h2>M O V I E S</h2>
-            <div className="container">
-                <img className="image" src={basePosterURL + user.avatar.tmdb.avatar_path} alt={user.name}/>
+            <input type="checkbox" id="darkmode-toggle"/>
+            <label htmlFor="darkmode-toggle"/>
+            </div>
+            <div className={'right-header'}>
+                <img className={"image"} src={basePosterURL + user.avatar.tmdb.avatar_path} alt={user.name}/>
             </div>
 
 
