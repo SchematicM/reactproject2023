@@ -15,3 +15,6 @@
     border-radius: 10px;
     font-size: 40px;
 }
+.pagination button[disabled] {
+    display: none;
+}
