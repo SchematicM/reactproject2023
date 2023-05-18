@@ -23,7 +23,7 @@
     object-fit: cover;
     object-position: center;
 }
-input{
+.left-header>input{
     display: none;
 }
 label {

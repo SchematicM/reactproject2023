@@ -1,3 +1,7 @@
 .action-header{
     margin-top: 40px;
 }
+.action-header>form>input{
+    width: 60px;
+    display: block;
+}

@@ -92,6 +92,19 @@ const getVideos = createAsyncThunk<IVideosContent<IVideo>, number>(
         }
     }
 );
+const searchMovies = createAsyncThunk<IPagination<IMovies>, string>(
+    'movieSlice/searchMovies',
+    async (query, { rejectWithValue }) => {
+        try {
+            const { data } = await moviesService.searchMovies(query);
+            return data;
+        } catch (e) {
+            const err = e as AxiosError;
+            return rejectWithValue(err.response?.data ?? 'Unknown error occurred');
+        }
+    }
+);
+
 
 const slice = createSlice({
     name: 'movieSlice',
@@ -108,6 +121,12 @@ const slice = createSlice({
             .addCase(getDetails.fulfilled, (state, action) => {
                 state.details = action.payload
             })
+            .addCase(searchMovies.fulfilled, (state, action) => {
+                const {results, page, total_pages} = action.payload;
+                state.results = results;
+                state.page = page;
+                state.total_pages = total_pages;
+            })
             .addCase(getVideos.fulfilled, (state, action) => {
                 state.videos = action.payload
             })
@@ -122,7 +141,7 @@ const slice = createSlice({
 const {actions, reducer: moviesReducer} = slice;
 const moviesActions = {
     ...actions,
-    getAll, getDetails, getVideos
+    getAll, getDetails, getVideos, searchMovies
 };
 
 export {moviesReducer, moviesActions};

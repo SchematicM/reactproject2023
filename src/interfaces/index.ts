@@ -9,3 +9,4 @@ export * from './ICollection.interface';
 export * from './ICompany.interface';
 export * from './ISpokenLanguage.interface';
 export * from './IError.interface';
+export * from './IQuery.interface';

@@ -7,7 +7,8 @@ const moviesService = {
     getAll: (page:number = 1): IRes<IPagination<IMovies>> => axiosMoviesService.get(urls.movies.movies,{params:{page}}),
     getMe: (): IRes<IUser> => axiosMoviesService.get(urls.users.me),
     getDetails:(id:number):IRes<IMovieDetailsInterface> => axiosMoviesService.get(urls.movies.overview+id),
-    getVideo:(id:number):IRes<IVideosContent<IVideo>> => axiosMoviesService.get(urls.movies.overview+id+urls.movies.video)
+    getVideo:(id:number):IRes<IVideosContent<IVideo>> => axiosMoviesService.get(urls.movies.overview+id+urls.movies.video),
+    searchMovies:(query:string) : IRes<IPagination<IMovies>> => axiosMoviesService.get(urls.movies.search+query)
 }
 
 export {moviesService}
