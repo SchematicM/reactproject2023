@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {FC} from 'react';
 
-const GenreBadge = () => {
+import './genreBadge.css'
+const GenreBadge: FC< {name: string}>= ({name}) => {
     return (
-        <div>
-            Genre badge
+        <div className={'genre'}>
+            <button>{name}</button>
         </div>
     );
 };

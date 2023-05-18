@@ -1,0 +1,13 @@
+.logo>img{
+  width: 100%;
+}
+.production-company-content{
+  width: 23%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-between;
+}
+.company-name>h6{
+  margin: 7px;
+}

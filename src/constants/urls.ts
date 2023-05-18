@@ -6,6 +6,7 @@ const urls = {
     movies: {
         movies: '/discover/movie',
         overview:'/movie/',
+        video:'/videos'
     },
     users: {
         me: '/account/19487661'

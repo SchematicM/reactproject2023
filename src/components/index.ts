@@ -7,3 +7,7 @@ export * from './PosterPreview/PosterPreview';
 export * from './UserInfo/UserInfo';
 export * from './StarsRating/StarsRating';
 export * from './MovieCardOverview/MovieCardOverview';
+export * from './Genres/Genres';
+export * from './ProductionCompanies/ProductionCompanies';
+export * from './ProductionCompany/ProductionCompany';
+export * from './SpokenLanguages/SpokenLanguages';

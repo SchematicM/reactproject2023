@@ -1,0 +1,7 @@
+.languages-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 3vw;
+}

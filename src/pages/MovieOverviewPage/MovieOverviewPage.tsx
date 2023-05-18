@@ -4,7 +4,6 @@ import MovieCardOverview from "../../components/MovieCardOverview/MovieCardOverv
 const MovieOverviewPage = () => {
     return (
         <div>
-            Movie Details
             <MovieCardOverview/>
         </div>
     );
