@@ -1,8 +1,7 @@
 import {IMovieDetailsInterface, IMovies, IPagination, IVideo, IVideosContent} from "../../interfaces";
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, isFulfilled, isPending} from "@reduxjs/toolkit";
 import {moviesService} from "../../services";
 import {AxiosError} from "axios";
-import {RootState} from "../store";
 
 interface IState {
     results: IMovies[],
@@ -52,17 +51,12 @@ const initialState: IState = {
         id: 0,
         results: []
     },
-    isLoading: false
+    isLoading: false,
 }
 
 const getAll = createAsyncThunk<IPagination<IMovies>, number>(
     'movieSlice/getAll',
-    async (page, { rejectWithValue, getState }) => {
-        const { isLoading } = (getState() as RootState).moviesReducer;
-        if (isLoading) {
-            return rejectWithValue('Loading in progress');
-        }
-
+    async (page, { rejectWithValue }) => {
         try {
             const { data } = await moviesService.getAll(page);
             return data;
@@ -75,12 +69,7 @@ const getAll = createAsyncThunk<IPagination<IMovies>, number>(
 
 const getDetails = createAsyncThunk<IMovieDetailsInterface, number>(
     'movieSlice/getDetails',
-    async (id, { rejectWithValue, getState }) => {
-        const { isLoading } = (getState() as RootState).moviesReducer;
-        if (isLoading) {
-            return rejectWithValue('Loading in progress');
-        }
-
+    async (id, { rejectWithValue }) => {
         try {
             const { data } = await moviesService.getDetails(id);
             return data;
@@ -93,12 +82,7 @@ const getDetails = createAsyncThunk<IMovieDetailsInterface, number>(
 
 const getVideos = createAsyncThunk<IVideosContent<IVideo>, number>(
     'movieSlice/getVideos',
-    async (id, { rejectWithValue, getState }) => {
-        const { isLoading } = (getState() as RootState).moviesReducer;
-        if (isLoading) {
-            return rejectWithValue('Loading in progress');
-        }
-
+    async (id, { rejectWithValue }) => {
         try {
             const { data } = await moviesService.getVideo(id);
             return data;
@@ -127,8 +111,12 @@ const slice = createSlice({
             .addCase(getVideos.fulfilled, (state, action) => {
                 state.videos = action.payload
             })
-
-
+            .addMatcher(isPending(), (state) => {
+                state.isLoading = true;
+            })
+            .addMatcher(isFulfilled(), (state) => {
+                state.isLoading = false;
+            })
 });
 
 const {actions, reducer: moviesReducer} = slice;

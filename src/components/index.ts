@@ -11,3 +11,4 @@ export * from './Genres/Genres';
 export * from './ProductionCompanies/ProductionCompanies';
 export * from './ProductionCompany/ProductionCompany';
 export * from './SpokenLanguages/SpokenLanguages';
+export * from './FunctionalHeader/FunctionalHeader';
