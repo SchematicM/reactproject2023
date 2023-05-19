@@ -9,11 +9,16 @@ form>input,form>button{
 }
 form>input{
     width: 25vw;
+    padding: 5px;
 }
 
 form>button{
     margin-right: 2vw;
     margin-left: 10px;
     background: transparent;
-
+    font-size: 30px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    color: #5e5e5e;
 }
