@@ -8,10 +8,11 @@ interface StarsRatingProps {
 
 const StarsRating: React.FC<StarsRatingProps> = ({rating}) => {
     const totalStars = 10;
+    const newRating = rating.toFixed(1);
 
     return (
         <div className="rating">
-            <div className={'rating-number'}>{rating}</div>
+            <div className={'rating-number'}>{newRating}</div>
             {[...Array(totalStars)].map((_, index) => {
                 const starValue = index + 1;
                 const filledStar = starValue <= rating || starValue - 0.5 === rating;
