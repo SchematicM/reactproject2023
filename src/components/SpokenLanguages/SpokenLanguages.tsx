@@ -10,11 +10,11 @@ const SpokenLanguages: FC<IProps> = ({languages}) => {
     return (
         <div className={'languages-content'}>
             <h3>Languages: </h3>
-            <ul className={'languages-list'}>
+            <div className={'languages-list'}>
                 {
-                    languages.map(lang => (<li key={lang.iso_639_1}>{lang.english_name}</li>))
+                    languages.map(lang => (<h3 key={lang.iso_639_1}>{lang.english_name}</h3>))
                 }
-            </ul>
+            </div>
         </div>
     );
 };

@@ -7,7 +7,7 @@ const ProductionCompany: FC<ICompany> = ({logo_path, name}) => {
     return (
         <div className={'production-company-content'}>
             <div className={'logo'}>
-                <img src={basePosterURL + logo_path} alt={name}/>
+                {logo_path&& <img src={basePosterURL + logo_path} alt={name}/>}
             </div>
             <div className={'company-name'}>
                 <h6>{name}</h6>

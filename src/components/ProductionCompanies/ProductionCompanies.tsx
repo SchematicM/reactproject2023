@@ -14,8 +14,7 @@ const ProductionCompanies: FC<IProps> = ({companies}) => {
                 {
                     companies.map(company => <ProductionCompany key={company.id} id={company.id}
                                                                 logo_path={company.logo_path}
-                                                                name={company.name}
-                                                                origin_country={company.origin_country}/>)
+                                                                name={company.name} origin_country={company.origin_country}/>)
                 }
             </div>
         </div>

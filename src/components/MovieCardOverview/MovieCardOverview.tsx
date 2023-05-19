@@ -8,6 +8,8 @@ import StarsRating from "../StarsRating/StarsRating";
 import SpokenLanguages from "../SpokenLanguages/SpokenLanguages";
 
 import './movieCardOverview.css';
+import VideoContent from "../VideoContent/VideoContent";
+import ProductionCompanies from "../ProductionCompanies/ProductionCompanies";
 
 const MovieCardOverview = () => {
     const {details, videos} = useAppSelector(state => state.moviesReducer);
@@ -23,9 +25,11 @@ const MovieCardOverview = () => {
 
     return (
         <div className={'movie-details'}>
+
             <div className={'general'}>
                 <div className={'movie-details-poster'}>
-                    <img src={basePosterURL + details.poster_path} alt={details.title + ' poster'}/>
+                    {details.poster_path &&
+                        <img src={basePosterURL + details.poster_path} alt={details.title + ' poster'}/>}
                 </div>
                 <div className={'movie-details-info'}>
                     <h1>
@@ -39,27 +43,29 @@ const MovieCardOverview = () => {
                     <h3>Rating</h3>
                     <p>Votes count: {details.vote_count}</p>
                     <StarsRating rating={details.vote_average}/>
+                    {videos.results && <VideoContent videoKey={videos.results[1]?.key}/>}
                     <SpokenLanguages languages={details.spoken_languages}/>
-                    <h3>Overview</h3>
-                    <p>{details.overview}</p>
+                </div>
+            </div>
+            <div className={'additional'}>
+                <h3>Overview</h3>
+                <p>{details.overview}</p>
+                <div className={'more'}>
                     {details.belongs_to_collection &&
                         <div className={'collection-belonging'}>
                             <div className={'collection-name'}>
-                                <h3>Collection:</h3>
-                                <h3>{details.belongs_to_collection.name}</h3>
+                                <h3>Collection: {details.belongs_to_collection.name}</h3>
                             </div>
                             <div className={'collection-poster'}>
-                                <img src={basePosterURL + details.belongs_to_collection.poster_path}
-                                     alt={details.belongs_to_collection.name + ' poster'}/>
+                                {details.belongs_to_collection.poster_path &&
+                                    <img src={basePosterURL + details.belongs_to_collection.poster_path}
+                                         alt={details.belongs_to_collection.name + ' poster'}/>}
                             </div>
                         </div>
-                        }
+                    }
+                    <ProductionCompanies companies={details.production_companies}/>
                 </div>
-
             </div>
-
-            {/*{<VideoContent videoKey={videos.results[1].key}/>}*/}
-
         </div>
     );
 };
