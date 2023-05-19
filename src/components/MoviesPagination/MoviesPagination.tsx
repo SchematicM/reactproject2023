@@ -4,7 +4,7 @@ import {useSearchParams} from "react-router-dom";
 import './moviesPagination.css';
 
 const MoviesPagination:FC = () => {
-    const {page} = useAppSelector(state => state.moviesReducer);
+    const {page,total_pages} = useAppSelector(state => state.moviesReducer);
     const [,setQuery] = useSearchParams();
     const prev = () => {
         // @ts-ignore
@@ -17,7 +17,7 @@ const MoviesPagination:FC = () => {
     return (
         <div className={'pagination'}>
             <button disabled={page === 1} onClick={prev}> &lt; </button>
-            <button disabled={page===500} onClick={next}>&gt;</button>
+            <button disabled={page===500||page === total_pages} onClick={next}>&gt;</button>
         </div>
     );
 };
