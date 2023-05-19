@@ -6,6 +6,7 @@ import './moviesPagination.css';
 const MoviesPagination:FC = () => {
     const {page,total_pages} = useAppSelector(state => state.moviesReducer);
     const [query,setQuery] = useSearchParams();
+    console.log(query.get('page'));
     const currentPage = Number(query.get('page')) || 1;
 
     const prev = () => {

@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {IGenre} from "../../interfaces/IGenre.interface";
+import {IGenre} from "../../interfaces";
 import GenreBadge from "../GenreBadge/GenreBadge";
 import './genres.css'
 
@@ -12,7 +12,7 @@ const Genres: FC<IProps> = ({ genres }) => {
             <h3>Genres : </h3>
             <div className={'genres'}>
             {genres.map((genre) => (
-                <GenreBadge key = {genre.id} name={genre.name} />
+                <GenreBadge key = {genre.id} name={genre.name} id ={genre.id} />
             ))}
         </div>
         </div>

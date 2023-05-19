@@ -1,7 +1,19 @@
-.action-header{
-    margin-top: 40px;
+form>input,form>button{
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    height: 40px;
+    display:block;
+    box-sizing: border-box;
+    border-style: solid;
 }
-.action-header>form>input{
-    width: 60px;
-    display: block;
+form>input{
+    width: 25vw;
+}
+
+form>button{
+    margin-right: 2vw;
+    margin-left: 10px;
+    background: transparent;
+
 }

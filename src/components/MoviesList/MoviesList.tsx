@@ -15,6 +15,7 @@ const MoviesList: FC = () => {
     const searchParams = new URLSearchParams(location.search);
     let page = searchParams.get('page');
     const query = searchParams.get('query');
+    const with_genres = searchParams.get('with_genres');
     useEffect(() => {
         if (!page) {
             page = '1';
@@ -23,8 +24,12 @@ const MoviesList: FC = () => {
             dispatch(moviesActions.searchMovies({ query, page }));
             return;
         }
+        else if(with_genres){
+            dispatch(moviesActions.getMoviesByGenre({ query:with_genres, page }));
+            return;
+        }
         dispatch(moviesActions.getAll(+page));
-    }, ([page,query]));
+    }, ([page,query,with_genres]));
 
 
 

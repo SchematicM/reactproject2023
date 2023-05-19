@@ -5,6 +5,7 @@ body,head{
 .dark{
     background-color: #242424;
     color:white;
+    border-color: white ;
 }
 
 .App{

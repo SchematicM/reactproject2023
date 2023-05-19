@@ -11,3 +11,8 @@ export * from './ISpokenLanguage.interface';
 export * from './IError.interface';
 export * from './IQuery.interface';
 export * from './ISearchMoviesParams.interface';
+export * from './IGenre.interface';
+
+
+
+

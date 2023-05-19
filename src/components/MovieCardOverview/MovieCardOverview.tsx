@@ -21,7 +21,7 @@ const MovieCardOverview = () => {
             dispatch(moviesActions.getDetails(+id));
             dispatch(moviesActions.getVideos(+id));
         }
-    }, [])
+    }, [id])
 
     return (
         <div className={'movie-details'}>

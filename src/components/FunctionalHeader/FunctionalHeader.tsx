@@ -19,15 +19,10 @@ const FunctionalHeader: FC = () => {
     };
 
     return (
-        <div className="action-header">
-            header
-            Search
-            <form onSubmit={handleSubmit(search)}>
+            <form onSubmit={handleSubmit(search)} className={'search'}>
                 <input type="text" placeholder="Search" {...register('query', {required: true})} />
                 <button type="submit">Search</button>
             </form>
-            Filters
-        </div>
     );
 };
 
