@@ -5,14 +5,21 @@ import './moviesPagination.css';
 
 const MoviesPagination:FC = () => {
     const {page,total_pages} = useAppSelector(state => state.moviesReducer);
-    const [,setQuery] = useSearchParams();
+    const [query,setQuery] = useSearchParams();
+    const currentPage = Number(query.get('page')) || 1;
+
     const prev = () => {
-        // @ts-ignore
-        setQuery(prev1 => ({...prev1, page:+prev1.get('page')-1}))
-    }
+        setQuery((prevQuery) => {
+            const newQuery = new URLSearchParams(prevQuery);
+            newQuery.set('page', String(currentPage - 1));
+            return newQuery;
+        })    }
     const next = ()=>{
-        // @ts-ignore
-        setQuery(prev1 => ({...prev1, page:+prev1.get('page')+1}))
+        setQuery((prevQuery) => {
+            const newQuery = new URLSearchParams(prevQuery);
+            newQuery.set('page', String(currentPage + 1));
+            return newQuery;
+        })
     }
     return (
         <div className={'pagination'}>

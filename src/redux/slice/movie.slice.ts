@@ -1,4 +1,11 @@
-import {IMovieDetailsInterface, IMovies, IPagination, IVideo, IVideosContent} from "../../interfaces";
+import {
+    IMovieDetailsInterface,
+    IMovies,
+    IPagination,
+    ISearchMoviesParams,
+    IVideo,
+    IVideosContent
+} from "../../interfaces";
 import {createAsyncThunk, createSlice, isFulfilled, isPending} from "@reduxjs/toolkit";
 import {moviesService} from "../../services";
 import {AxiosError} from "axios";
@@ -9,7 +16,7 @@ interface IState {
     total_pages: number,
     details: IMovieDetailsInterface
     videos: IVideosContent<IVideo>
-    isLoading: boolean;
+    isLoading: boolean
 }
 
 const initialState: IState = {
@@ -92,7 +99,7 @@ const getVideos = createAsyncThunk<IVideosContent<IVideo>, number>(
         }
     }
 );
-const searchMovies = createAsyncThunk<IPagination<IMovies>, string>(
+const searchMovies = createAsyncThunk<IPagination<IMovies>, ISearchMoviesParams>(
     'movieSlice/searchMovies',
     async (query, { rejectWithValue }) => {
         try {

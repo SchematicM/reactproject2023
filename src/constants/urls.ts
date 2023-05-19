@@ -7,7 +7,7 @@ const urls = {
         movies: '/discover/movie',
         overview:'/movie/',
         video:'/videos',
-        search :'/search/keyword?query='
+        search :'/search/movie?query='
     },
     users: {
         me: '/account/19487661'
