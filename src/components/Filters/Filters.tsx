@@ -8,13 +8,16 @@ import {useNavigate} from "react-router-dom";
 
 
 const Filters: FC = () => {
-    const {genres, chosenGenres} = useAppSelector(state => state.moviesReducer);
+    const {genres} = useAppSelector(state => state.moviesReducer);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const searchParams = new URLSearchParams(window.location.search);
+    const with_genres = searchParams.get('with_genres');
+
 
     useEffect(() => {
-        dispatch(moviesActions.getGenres())
-
+        dispatch(moviesActions.getGenres());
+        with_genres && dispatch(moviesActions.getChosenGenresFromQuery(with_genres))
     }, [])
 
     function clearChosenGenres() {
@@ -24,8 +27,7 @@ const Filters: FC = () => {
 
     return (
         <div className={'filters'}>
-            {JSON.stringify(chosenGenres)}
-            <button onClick={() => clearChosenGenres()}>clear</button>
+            <button onClick={() => clearChosenGenres()}>Clear Genres</button>
             {
                 genres.map(genre => (<GenreBadge key={genre.id} id={genre.id} name={genre.name}/>))
             }

@@ -157,6 +157,9 @@ const slice = createSlice({
         clearGenresForMovies: (state) => {
             state.chosenGenres =[];
         },
+        getChosenGenresFromQuery: (state, action) => {
+            state.chosenGenres = action.payload.split(',').map(Number);
+        }
     },
     extraReducers: builder => {
         builder
