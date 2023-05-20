@@ -44,7 +44,6 @@ const Filters: FC = () => {
                 Sort by Rating
             </button>
             <h3>Choose Genres:</h3>
-            {JSON.stringify(chosenGenres)}
             <button onClick={() => clearChosenGenres()}>Clear Genres</button>
             {
                 genres.map(genre => (<GenreBadge key={genre.id} id={genre.id} name={genre.name}/>))
