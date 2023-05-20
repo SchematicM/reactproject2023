@@ -3,7 +3,7 @@ import {
     IMovieDetailsInterface,
     IMovies,
     IPagination,
-    ISearchMoviesParams, IUser,
+    ISearchMoviesParams,
     IVideo,
     IVideosContent
 } from "../../interfaces";
