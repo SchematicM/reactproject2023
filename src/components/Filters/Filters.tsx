@@ -20,13 +20,20 @@ const Filters: FC = () => {
         with_genres && dispatch(moviesActions.getChosenGenresFromQuery(with_genres))
     }, [])
 
-    function clearChosenGenres() {
+    const clearChosenGenres = () => {
         dispatch(moviesActions.clearGenresForMovies());
         navigate('/movies');
+    }
+    const getRatedMovies = () =>{
+        dispatch(moviesActions.getRatedMovies());
     }
 
     return (
         <div className={'filters'}>
+            <button onClick={()=>getRatedMovies()}>
+                sort by rating
+            </button>
+            <h3>Choose Genres:</h3>
             <button onClick={() => clearChosenGenres()}>Clear Genres</button>
             {
                 genres.map(genre => (<GenreBadge key={genre.id} id={genre.id} name={genre.name}/>))

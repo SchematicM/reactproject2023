@@ -22,7 +22,9 @@ const moviesService = {
     getVideo: (id: number): IRes<IVideosContent<IVideo>> =>
         axiosMoviesService.get(urls.movies.overview + id + urls.movies.video),
     searchMovies: (query: ISearchMoviesParams): IRes<IPagination<IMovies>> =>
-        axiosMoviesService.get(`${urls.movies.search + query.query}&page=${query.page}`)
+        axiosMoviesService.get(`${urls.movies.search + query.query}&page=${query.page}`),
+    getRatedMovies:() :IRes<IPagination<IMovies>> =>
+        axiosMoviesService.get(urls.movies.topRated)
 }
 
 export {moviesService}

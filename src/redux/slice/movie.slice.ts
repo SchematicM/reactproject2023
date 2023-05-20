@@ -141,6 +141,18 @@ const getGenres = createAsyncThunk<IGenres, void>(
         }
     }
 );
+const getRatedMovies = createAsyncThunk<IPagination<IMovies>, void>(
+    'movieSlice/getRatedMovies',
+    async (_, {rejectWithValue}) => {
+        try {
+            const {data} = await moviesService.getRatedMovies();
+            return data;
+        } catch (e) {
+            const err = e as AxiosError;
+            return rejectWithValue(err.response?.data ?? 'Unknown error occurred');
+        }
+    }
+);
 
 const slice = createSlice({
     name: 'movieSlice',
@@ -184,6 +196,12 @@ const slice = createSlice({
                 state.page = page;
                 state.total_pages = total_pages;
             })
+            .addCase(getRatedMovies.fulfilled, (state, action) => {
+                const {results, page, total_pages} = action.payload;
+                state.results = results;
+                state.page = page;
+                state.total_pages = total_pages;
+            })
             .addCase(getGenres.fulfilled, (state, action) => {
                 state.genres = action.payload.genres;
             })
@@ -202,7 +220,7 @@ const slice = createSlice({
 const {actions, reducer: moviesReducer} = slice;
 const moviesActions = {
     ...actions,
-    getAll, getDetails, getVideos, searchMovies,getMoviesByGenre, getGenres
+    getAll, getDetails, getVideos, searchMovies,getMoviesByGenre, getGenres,getRatedMovies
 };
 
 export {moviesReducer, moviesActions};
