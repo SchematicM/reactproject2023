@@ -18,7 +18,7 @@ const moviesService = {
     getDetails: (id: number): IRes<IMovieDetailsInterface> => axiosMoviesService.get(urls.movies.overview + id),
     getMe: (): IRes<IUser> => axiosMoviesService.get(urls.users.me),
     getMoviesByGenre: (query: ISearchMoviesParams): IRes<IPagination<IMovies>> =>
-        axiosMoviesService.get(`${urls.movies.getMoviesByGenre + query.query}&page=${query.page}`),
+       query&& axiosMoviesService.get(`${urls.movies.getMoviesByGenre + query.query}&page=${query.page}`),
     getVideo: (id: number): IRes<IVideosContent<IVideo>> =>
         axiosMoviesService.get(urls.movies.overview + id + urls.movies.video),
     searchMovies: (query: ISearchMoviesParams): IRes<IPagination<IMovies>> =>

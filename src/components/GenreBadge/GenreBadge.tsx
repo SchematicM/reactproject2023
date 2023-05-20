@@ -19,9 +19,6 @@ const GenreBadge: FC<IGenre> = ({name, id}) => {
             navigate(`/movies?${query}`);
         } else {
             dispatch(moviesActions.setGenresForMovies(id));
-            const updatedChosenGenres = [...chosenGenres, id];
-            const query = `page=1&with_genres=${updatedChosenGenres.join(',')}`;
-            navigate(`/movies?${query}`);
         }
     }
     return (

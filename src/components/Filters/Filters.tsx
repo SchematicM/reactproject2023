@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 
 
 const Filters: FC = () => {
-    const {genres} = useAppSelector(state => state.moviesReducer);
+    const {genres, chosenGenres} = useAppSelector(state => state.moviesReducer);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const searchParams = new URLSearchParams(window.location.search);
@@ -24,20 +24,27 @@ const Filters: FC = () => {
         with_genres && dispatch(moviesActions.getChosenGenresFromQuery(with_genres))
     }, [])
 
+    useEffect(() => {
+        const query = `page=1&with_genres=${chosenGenres.join(',')}`;
+        console.log(chosenGenres);
+        navigate(`/movies?${query}`);
+    },[chosenGenres]);
+
     const clearChosenGenres = () => {
         dispatch(moviesActions.clearGenresForMovies());
         navigate('/movies');
     }
-    const getRatedMovies = () =>{
+    const getRatedMovies = () => {
         dispatch(moviesActions.getRatedMovies(params));
     }
 
     return (
         <div className={'filters'}>
-            <button onClick={()=>getRatedMovies()}>
+            <button onClick={() => getRatedMovies()}>
                 Sort by Rating
             </button>
             <h3>Choose Genres:</h3>
+            {JSON.stringify(chosenGenres)}
             <button onClick={() => clearChosenGenres()}>Clear Genres</button>
             {
                 genres.map(genre => (<GenreBadge key={genre.id} id={genre.id} name={genre.name}/>))
