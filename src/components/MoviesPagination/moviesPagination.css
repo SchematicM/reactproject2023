@@ -10,9 +10,9 @@
     margin-left: 18vw;
     margin-right: 18vw;
     margin-top: 20px;
-    color: #ebebeb;
-    background: #777777;
-    border-radius: 10px;
+    color: #a9a8a8;
+    background-color: transparent;
+    border-style: none;
     font-size: 40px;
 }
 .pagination button[disabled] {
