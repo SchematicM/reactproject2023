@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 
 
 const Filters: FC = () => {
-    const {genres, chosenGenres} = useAppSelector(state => state.moviesReducer);
+    const {genres, chosenGenres,isSorted} = useAppSelector(state => state.moviesReducer);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const searchParams = new URLSearchParams(window.location.search);
@@ -35,12 +35,13 @@ const Filters: FC = () => {
     }
     const getRatedMovies = () => {
         dispatch(moviesActions.getRatedMovies(params));
+        dispatch(moviesActions.isSorted());
     }
 
     return (
         <div className={'filters'}>
             <button onClick={() => getRatedMovies()}>
-                Sort by Rating
+                {isSorted?'Remove Sort':'Sort by Rating'}
             </button>
             <h3>Choose Genres:</h3>
             <button onClick={() => clearChosenGenres()}>Clear Genres</button>

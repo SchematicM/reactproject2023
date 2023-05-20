@@ -7,7 +7,7 @@ import {
     IVideo,
     IVideosContent
 } from "../../interfaces";
-import {createAsyncThunk, createSlice, isFulfilled, isPending} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {moviesService} from "../../services";
 import {AxiosError} from "axios";
 
@@ -19,7 +19,7 @@ interface IState {
     videos: IVideosContent<IVideo>,
     genres:IGenre[],
     chosenGenres:number[],
-    isLoading: boolean
+    isSorted: boolean
 }
 
 const initialState: IState = {
@@ -63,10 +63,10 @@ const initialState: IState = {
     },
     genres: [],
     chosenGenres:[],
-    isLoading: false,
+    isSorted: false,
 }
 
-const getAll = createAsyncThunk<IPagination<IMovies>, number>(
+const getAll = createAsyncThunk<IPagination<IMovies>, string>(
     'movieSlice/getAll',
     async (page, { rejectWithValue }) => {
         try {
@@ -171,6 +171,9 @@ const slice = createSlice({
         },
         getChosenGenresFromQuery: (state, action) => {
             state.chosenGenres = action.payload.split(',').map(Number);
+        },
+        isSorted: (state, ) => {
+            state.isSorted = !state.isSorted;
         }
     },
     extraReducers: builder => {
@@ -208,12 +211,6 @@ const slice = createSlice({
             .addCase(getVideos.fulfilled, (state, action) => {
                 state.videos = action.payload
             })
-            .addMatcher(isPending(), (state) => {
-                state.isLoading = true;
-            })
-            .addMatcher(isFulfilled(), (state) => {
-                state.isLoading = false;
-            });
     }
 });
 
