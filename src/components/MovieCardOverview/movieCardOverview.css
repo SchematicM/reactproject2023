@@ -9,6 +9,7 @@
 }
 
 .movie-details-poster {
+    min-width: 200px;
     width: 35%;
     margin-right:20px;
 }
@@ -38,6 +39,7 @@
 .collection-poster > img {
     width:100%;
     margin-left: 20px;
+    min-width: 200px;
     max-width: 100%;
     max-height: 100%;
     object-fit: contain
@@ -63,4 +65,17 @@
 .more{
     display: flex;
     flex-direction: row;
+}
+
+@media screen and (max-width: 1419px) {
+    .general{
+        flex-direction: column;
+    }
+    .movie-details-poster,.movie-details-info {
+        width: 90vw;
+        margin-right:20px;
+        display: flex;
+        justify-content: center;
+
+    }
 }
