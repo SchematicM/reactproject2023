@@ -1,10 +1,11 @@
 import React, {FC} from 'react';
+import {useNavigate} from "react-router-dom";
 
-import './genreBadge.css'
 import {IGenre} from "../../interfaces";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {moviesActions} from "../../redux";
-import {useNavigate} from "react-router-dom";
+
+import './genreBadge.css'
 
 const GenreBadge: FC<IGenre> = ({name, id}) => {
     const{chosenGenres} = useAppSelector(state => state.moviesReducer);

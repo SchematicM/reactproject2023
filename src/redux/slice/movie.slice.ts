@@ -1,3 +1,6 @@
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {AxiosError} from "axios";
+
 import {
     IGenre, IGenres,
     IMovieDetailsInterface,
@@ -7,9 +10,7 @@ import {
     IVideo,
     IVideosContent
 } from "../../interfaces";
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {moviesService} from "../../services";
-import {AxiosError} from "axios";
 
 interface IState {
     results: IMovies[],

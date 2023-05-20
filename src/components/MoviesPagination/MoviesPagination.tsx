@@ -1,6 +1,8 @@
 import React, {FC} from 'react';
-import {useAppSelector} from "../../hooks";
 import {useSearchParams} from "react-router-dom";
+
+import {useAppSelector} from "../../hooks";
+
 import './moviesPagination.css';
 
 const MoviesPagination:FC = () => {

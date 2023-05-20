@@ -1,11 +1,11 @@
 import React, {FC} from 'react';
+import {useNavigate} from "react-router-dom";
 
 import {IMovies} from "../../interfaces";
 import PosterPreview from "../PosterPreview/PosterPreview";
 import StarsRating from "../StarsRating/StarsRating";
 
 import './movieListCard.css';
-import {useNavigate} from "react-router-dom";
 
 interface IProps{
     movie: IMovies

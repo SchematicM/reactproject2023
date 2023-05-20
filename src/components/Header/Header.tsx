@@ -1,12 +1,12 @@
 import React, {FC, useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 
-
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {basePosterURL} from "../../constants";
 import {moviesActions, userActions} from "../../redux";
 
 import './header.css'
+
 import FunctionalHeader from "../FunctionalHeader/FunctionalHeader";
 
 const Header: FC = () => {

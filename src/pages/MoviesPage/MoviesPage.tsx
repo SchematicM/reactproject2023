@@ -1,4 +1,5 @@
 import React, {FC} from "react";
+
 import MoviesList from "../../components/MoviesList/MoviesList";
 import MoviesPagination from "../../components/MoviesPagination/MoviesPagination";
 import Filters from "../../components/Filters/Filters";

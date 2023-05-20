@@ -1,6 +1,8 @@
 import React, {FC} from 'react';
+
 import {ICompany} from "../../interfaces";
 import {basePosterURL} from "../../constants";
+
 import './productionCompany.css'
 
 const ProductionCompany: FC<ICompany> = ({logo_path, name}) => {

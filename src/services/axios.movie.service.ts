@@ -1,5 +1,6 @@
-import { baseMovieURL, token } from "../constants";
 import axios from "axios";
+
+import { baseMovieURL, token } from "../constants";
 
 const axiosMoviesService = axios.create({ baseURL: baseMovieURL });
 

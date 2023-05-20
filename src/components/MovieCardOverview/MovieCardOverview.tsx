@@ -1,15 +1,17 @@
 import React, {useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from "../../hooks";
 import {useParams} from "react-router-dom";
+
+import {useAppDispatch, useAppSelector} from "../../hooks";
 import {moviesActions} from "../../redux";
 import {basePosterURL} from "../../constants";
 import Genres from "../Genres/Genres";
 import StarsRating from "../StarsRating/StarsRating";
 import SpokenLanguages from "../SpokenLanguages/SpokenLanguages";
-
-import './movieCardOverview.css';
 import VideoContent from "../VideoContent/VideoContent";
 import ProductionCompanies from "../ProductionCompanies/ProductionCompanies";
+
+import './movieCardOverview.css';
+
 
 const MovieCardOverview = () => {
     const {details, videos} = useAppSelector(state => state.moviesReducer);

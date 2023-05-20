@@ -1,6 +1,8 @@
 import React, {FC} from 'react';
+
 import {IGenre} from "../../interfaces";
 import GenreBadge from "../GenreBadge/GenreBadge";
+
 import './genres.css'
 
 interface IProps{

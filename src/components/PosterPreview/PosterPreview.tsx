@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 
 import {basePosterURL} from "../../constants";
+import {IMovies} from "../../interfaces";
 
 import './posterPreview.css';
-import {IMovies} from "../../interfaces";
 
 interface IProps{
     movie: IMovies

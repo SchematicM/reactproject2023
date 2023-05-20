@@ -1,5 +1,7 @@
 import React, {FC} from 'react';
+
 import {ISpokenLanguage} from "../../interfaces";
+
 import './spokenLanguages.css'
 
 interface IProps {

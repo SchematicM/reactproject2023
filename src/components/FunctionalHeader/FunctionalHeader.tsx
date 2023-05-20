@@ -1,16 +1,18 @@
 import React, {FC} from 'react';
-import './functionalHeader.css';
 import {SubmitHandler, useForm} from "react-hook-form";
+
 import {IQuery} from "../../interfaces";
 import {useNavigate} from "react-router-dom";
 
+import './functionalHeader.css';
 
 const FunctionalHeader: FC = () => {
-    const {handleSubmit, register} = useForm<IQuery>();
+    const {handleSubmit, register,reset} = useForm<IQuery>();
 const navigate = useNavigate();
     const search: SubmitHandler<IQuery> =  (data) => {
         const query = `page=1&query=${data.query}`;
         navigate(`/movies?${query}`);
+        reset();
     };
 
     return (
