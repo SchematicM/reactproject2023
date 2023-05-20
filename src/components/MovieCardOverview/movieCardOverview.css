@@ -4,13 +4,13 @@
 .general, .collection-belonging {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content:center;
     align-items: center;
 }
 
 .movie-details-poster {
-    width: 40%;
-    margin-right: 5vw;
+    width: 35%;
+    margin-right:20px;
 }
 
 .movie-details-info {

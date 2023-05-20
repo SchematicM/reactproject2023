@@ -141,11 +141,11 @@ const getGenres = createAsyncThunk<IGenres, void>(
         }
     }
 );
-const getRatedMovies = createAsyncThunk<IPagination<IMovies>, void>(
+const getRatedMovies = createAsyncThunk<IPagination<IMovies>, ISearchMoviesParams>(
     'movieSlice/getRatedMovies',
-    async (_, {rejectWithValue}) => {
+    async (query, {rejectWithValue}) => {
         try {
-            const {data} = await moviesService.getRatedMovies();
+            const {data} = await moviesService.getRatedMovies(query);
             return data;
         } catch (e) {
             const err = e as AxiosError;

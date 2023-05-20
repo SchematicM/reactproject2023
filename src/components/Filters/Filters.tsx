@@ -14,6 +14,8 @@ const Filters: FC = () => {
     const searchParams = new URLSearchParams(window.location.search);
     const with_genres = searchParams.get('with_genres');
 
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
 
     useEffect(() => {
         dispatch(moviesActions.getGenres());
@@ -25,7 +27,7 @@ const Filters: FC = () => {
         navigate('/movies');
     }
     const getRatedMovies = () =>{
-        dispatch(moviesActions.getRatedMovies());
+        dispatch(moviesActions.getRatedMovies({page:params.page, query:params.with_genres}));
     }
 
     return (
