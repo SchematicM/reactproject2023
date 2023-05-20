@@ -1,4 +1,5 @@
 import React from 'react';
+import StarRatings from 'react-star-ratings';
 
 import './starsRating.css'
 
@@ -10,26 +11,37 @@ const StarsRating: React.FC<StarsRatingProps> = ({rating}) => {
     const totalStars = 10;
     const roundedRating = rating.toFixed(1);
 
-    function getStarClass(rating: number, starValue: number): [string, string] {
-        const starFillTypeClass =  (rating - starValue) < 0 ? "half" : "filled";
-        const starColorRatingClass = rating >= 8 ? "green" : rating >= 6 ? "orange" : "red";
-
-        return [starFillTypeClass, starColorRatingClass];
+    const getStarColor = () => {
+        return rating >= 7.5 ? "green" : rating >= 5 ? "orange" : "red";
     }
 
-    return (
-        <div className="rating">
-            <div className={'box rating-number'}>{roundedRating}</div>
-            {[...Array(totalStars)].map((_, index) => {
-                const starValue = index + 1;
-                const ifFilledStar = starValue < rating + 1;
-                const [starFillTypeClass, starColorRatingClass] = getStarClass(rating, starValue);
-                const starClassName = ifFilledStar ? `box star ${starFillTypeClass} ${starColorRatingClass}` : 'star';
+    const starColor = getStarColor();
 
-                return (
-                    <span key={index} className={starClassName}></span>
-                );
-            })}
+    return (
+        <div className="rating-container">
+            <div className={'rating-number'}>{roundedRating}</div>
+            <div className="stars">
+                <StarRatings
+                    rating={rating}
+                    starRatedColor={starColor}
+                    numberOfStars={totalStars}
+                    starHoverColor="blue"
+                    starDimension="25px"
+                    starSpacing="5px"
+                    name='rating'
+                />
+            </div>
+            <div className="stars-small">
+                <StarRatings
+                    rating={rating}
+                    starRatedColor={starColor}
+                    numberOfStars={1}
+                    starHoverColor="blue"
+                    starDimension="25px"
+                    starSpacing="5px"
+                    name='rating'
+                />
+            </div>
         </div>
     );
 };

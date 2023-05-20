@@ -1,71 +1,32 @@
 .rating,
-.movie-details-info > .rating {
+.movie-details-info > .rating-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin: 5px;
 }
 
-.rating {
-   display: flex;
-}
-
 .rating-number {
-    margin-top: 7px;
-    margin-right: 5px;
+    font-size: 25px;
+    margin-right: 10px;
 }
 
-.star {
-    font-size: x-large;
-    width: 25px;
-    display: inline-block;
-    color: gray;
+@media screen and (max-width: 768px) {
+    .stars{
+        display: none;
+    }
+
+    .stars-small {
+        display: block;
+    }
 }
 
-.star:last-child {
-    margin-right: 0;
-}
+@media screen and (min-width: 769px) {
+    .stars {
+        display: block;
+    }
 
-.star:before {
-    content: '\2605';
-}
-
-.star.half.green:after,
-.star.half.orange:after,
-.star.half.red:after {
-    content: '\2605';
-    margin-left: -20px;
-    width: 10px;
-    position: absolute;
-    overflow: hidden;
-}
-
-.star.half.green:after {
-    color: green;
-}
-
-.star.half.orange:after {
-    color: gold;
-}
-
-.star.half.red:after {
-    color: red;
-}
-
-.star.filled.green,
-.star.filled.orange,
-.star.filled.red {
-    content: '\2605';
-}
-
-.star.filled.green {
-    color: green;
-}
-
-.star.filled.orange {
-    color: gold;
-}
-
-.star.filled.red {
-    color: red;
+    .stars-small {
+        display: none;
+    }
 }
