@@ -31,7 +31,7 @@ const MoviesList: FC = () => {
         }
 
     }, (
-[query, with_genres,isSorted]
+[page,query, with_genres,isSorted]
 ));
 
 
