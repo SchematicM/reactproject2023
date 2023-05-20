@@ -1,4 +1,5 @@
 import {
+    IGenre, IGenres,
     IMovieDetailsInterface,
     IMovies,
     IPagination,
@@ -14,8 +15,10 @@ interface IState {
     results: IMovies[],
     page: number,
     total_pages: number,
-    details: IMovieDetailsInterface
-    videos: IVideosContent<IVideo>
+    details: IMovieDetailsInterface,
+    videos: IVideosContent<IVideo>,
+    genres:IGenre[],
+    chosenGenres:number[],
     isLoading: boolean
 }
 
@@ -58,6 +61,8 @@ const initialState: IState = {
         id: 0,
         results: []
     },
+    genres: [],
+    chosenGenres:[],
     isLoading: false,
 }
 
@@ -124,12 +129,51 @@ const getMoviesByGenre = createAsyncThunk<IPagination<IMovies>, ISearchMoviesPar
         }
     }
 );
+const getGenres = createAsyncThunk<IGenres, void>(
+    'movieSlice/getGenres',
+    async (_, {rejectWithValue}) => {
+        try {
+            const {data} = await moviesService.getGenres();
+            return data;
+        } catch (e) {
+            const err = e as AxiosError;
+            return rejectWithValue(err.response?.data ?? 'Unknown error occurred');
+        }
+    }
+);
+const getRatedMovies = createAsyncThunk<IPagination<IMovies>, void>(
+    'movieSlice/getRatedMovies',
+    async (_, {rejectWithValue}) => {
+        try {
+            const {data} = await moviesService.getRatedMovies();
+            return data;
+        } catch (e) {
+            const err = e as AxiosError;
+            return rejectWithValue(err.response?.data ?? 'Unknown error occurred');
+        }
+    }
+);
 
 const slice = createSlice({
     name: 'movieSlice',
     initialState,
-    reducers: {},
-    extraReducers: builder =>
+    reducers: {
+        setGenresForMovies: (state, action) => {
+            const index = state.chosenGenres.indexOf(action.payload);
+            if (index === -1) {
+                state.chosenGenres.push(action.payload);
+            } else {
+                state.chosenGenres.splice(index, 1);
+            }
+        },
+        clearGenresForMovies: (state) => {
+            state.chosenGenres =[];
+        },
+        getChosenGenresFromQuery: (state, action) => {
+            state.chosenGenres = action.payload.split(',').map(Number);
+        }
+    },
+    extraReducers: builder => {
         builder
             .addCase(getAll.fulfilled, (state, action) => {
                 const {results, page, total_pages} = action.payload;
@@ -152,6 +196,15 @@ const slice = createSlice({
                 state.page = page;
                 state.total_pages = total_pages;
             })
+            .addCase(getRatedMovies.fulfilled, (state, action) => {
+                const {results, page, total_pages} = action.payload;
+                state.results = results;
+                state.page = page;
+                state.total_pages = total_pages;
+            })
+            .addCase(getGenres.fulfilled, (state, action) => {
+                state.genres = action.payload.genres;
+            })
             .addCase(getVideos.fulfilled, (state, action) => {
                 state.videos = action.payload
             })
@@ -160,13 +213,14 @@ const slice = createSlice({
             })
             .addMatcher(isFulfilled(), (state) => {
                 state.isLoading = false;
-            })
+            });
+    }
 });
 
 const {actions, reducer: moviesReducer} = slice;
 const moviesActions = {
     ...actions,
-    getAll, getDetails, getVideos, searchMovies,getMoviesByGenre
+    getAll, getDetails, getVideos, searchMovies,getMoviesByGenre, getGenres,getRatedMovies
 };
 
 export {moviesReducer, moviesActions};

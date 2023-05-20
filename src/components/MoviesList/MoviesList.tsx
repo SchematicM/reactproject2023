@@ -9,7 +9,7 @@ import {IQuery} from "../../interfaces";
 
 
 const MoviesList: FC = () => {
-    const {results} = useAppSelector((state) => state.moviesReducer);
+    const {results, total_pages} = useAppSelector((state) => state.moviesReducer);
     const dispatch = useAppDispatch();
     const location = useAppLocation<IQuery>();
     const searchParams = new URLSearchParams(location.search);
@@ -21,16 +21,14 @@ const MoviesList: FC = () => {
             page = '1';
             searchParams.set('page', page);
         } else if (query) {
-            dispatch(moviesActions.searchMovies({ query, page }));
+            dispatch(moviesActions.searchMovies({query, page}));
             return;
-        }
-        else if(with_genres){
-            dispatch(moviesActions.getMoviesByGenre({ query:with_genres, page }));
+        } else if (with_genres) {
+            dispatch(moviesActions.getMoviesByGenre({query: with_genres, page}));
             return;
         }
         dispatch(moviesActions.getAll(+page));
-    }, ([page,query,with_genres]));
-
+    }, ([page, query, with_genres]));
 
 
     return (
@@ -42,6 +40,11 @@ const MoviesList: FC = () => {
                         <MovieListCard key={movie.id} movie={movie}/>
                     ))}
                 </div>}
+            {
+                total_pages === 0 && <div className={'warning'}>
+                    <h2>Sorry, but there are no movies with chosen genres!</h2>
+                </div>
+            }
         </div>
     );
 };

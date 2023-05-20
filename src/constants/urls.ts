@@ -7,8 +7,10 @@ const urls = {
         movies: '/discover/movie',
         overview:'/movie/',
         video:'/videos',
+        genres: '/genre/movie/list',
         search :'/search/movie?query=',
-        getMoviesByGenre:'/discover/movie?with_genres='
+        getMoviesByGenre:'/discover/movie?with_genres=',
+        topRated: '/movie/top_rated'
     },
     users: {
         me: '/account/19487661'

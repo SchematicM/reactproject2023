@@ -13,3 +13,19 @@
     border-radius: 50%;
 
 }
+
+@media screen and (max-width: 740px) {
+    .user{
+        justify-content: space-between;
+
+    }
+    .user-profile {
+        margin: 0;
+        padding: 0;
+    }
+
+    .user-avatar {
+        width: 30vw;
+
+    }
+}
