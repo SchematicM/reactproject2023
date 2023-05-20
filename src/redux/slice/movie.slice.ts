@@ -141,7 +141,7 @@ const getGenres = createAsyncThunk<IGenres, void>(
         }
     }
 );
-const getRatedMovies = createAsyncThunk<IPagination<IMovies>, ISearchMoviesParams>(
+const getRatedMovies = createAsyncThunk<IPagination<IMovies>, string>(
     'movieSlice/getRatedMovies',
     async (query, {rejectWithValue}) => {
         try {
