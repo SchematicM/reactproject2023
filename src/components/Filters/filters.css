@@ -1,0 +1,10 @@
+.filters{
+    padding: 40px;
+    width: 40vw;
+}
+.filters>button{
+    min-width: 100px;
+    width: 14vw;
+    height: 25px;
+    border-radius: 25px;
+margin-bottom: 20px;}

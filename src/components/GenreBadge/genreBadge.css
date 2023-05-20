@@ -1,0 +1,11 @@
+.genre>button{
+    min-width: 100px;
+    width: 14vw;
+    height: 40px;
+    border-radius: 25px;
+    margin-top: 5px;
+}
+.active{
+    color: #ffcc89;
+    background-color: orange;
+}

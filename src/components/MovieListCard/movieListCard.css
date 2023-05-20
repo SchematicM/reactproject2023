@@ -1,0 +1,14 @@
+.movie-card {
+    display: flex;
+    flex-direction: column;
+    border-style: outset;
+    width: 18vw;
+}
+
+.movie-info{
+    padding: 7px;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    text-align: center;
+}

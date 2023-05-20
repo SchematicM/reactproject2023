@@ -1,9 +1,21 @@
-import React from 'react';
+import React, {FC} from "react";
+import MoviesList from "../../components/MoviesList/MoviesList";
+import MoviesPagination from "../../components/MoviesPagination/MoviesPagination";
+import Filters from "../../components/Filters/Filters";
 
-const MoviesPage = () => {
+import './moviePage.css'
+
+const MoviesPage: FC = () => {
     return (
         <div>
-            MOVIES PAGE
+            <div className={'main-content'}>
+                <Filters/>
+                <div className={'movies'}>
+                    <MoviesList/>
+                    <MoviesPagination/>
+                </div>
+
+            </div>
         </div>
     );
 };

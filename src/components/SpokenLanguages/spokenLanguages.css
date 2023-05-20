@@ -1,0 +1,10 @@
+.languages-list,.languages-content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 3vw;
+}
+.languages-list>li{
+    list-style: none;
+}

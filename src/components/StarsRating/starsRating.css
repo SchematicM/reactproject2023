@@ -1,0 +1,32 @@
+.rating,
+.movie-details-info > .rating-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 5px;
+}
+
+.rating-number {
+    font-size: 25px;
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .stars{
+        display: none;
+    }
+
+    .stars-small {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .stars {
+        display: block;
+    }
+
+    .stars-small {
+        display: none;
+    }
+}
