@@ -145,7 +145,19 @@ const getGenres = createAsyncThunk<IGenres, void>(
 const slice = createSlice({
     name: 'movieSlice',
     initialState,
-    reducers: {},
+    reducers: {
+        setGenresForMovies: (state, action) => {
+            const index = state.chosenGenres.indexOf(action.payload);
+            if (index === -1) {
+                state.chosenGenres.push(action.payload);
+            } else {
+                state.chosenGenres.splice(index, 1);
+            }
+        },
+        clearGenresForMovies: (state) => {
+            state.chosenGenres =[];
+        },
+    },
     extraReducers: builder => {
         builder
             .addCase(getAll.fulfilled, (state, action) => {

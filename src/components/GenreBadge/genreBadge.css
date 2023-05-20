@@ -4,3 +4,7 @@
     height: 40px;
     border-radius: 25px;
 }
+.selected{
+    color: #ffcc89;
+    background-color: orange;
+}
