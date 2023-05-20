@@ -26,7 +26,6 @@ const Filters: FC = () => {
 
     useEffect(() => {
         const query = `page=1&with_genres=${chosenGenres.join(',')}`;
-        console.log(chosenGenres);
         navigate(`/movies?${query}`);
     },[chosenGenres]);
 
