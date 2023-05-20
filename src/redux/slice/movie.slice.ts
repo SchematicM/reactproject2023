@@ -1,8 +1,9 @@
 import {
+    IGenre,
     IMovieDetailsInterface,
     IMovies,
     IPagination,
-    ISearchMoviesParams,
+    ISearchMoviesParams, IUser,
     IVideo,
     IVideosContent
 } from "../../interfaces";
@@ -14,8 +15,9 @@ interface IState {
     results: IMovies[],
     page: number,
     total_pages: number,
-    details: IMovieDetailsInterface
-    videos: IVideosContent<IVideo>
+    details: IMovieDetailsInterface,
+    videos: IVideosContent<IVideo>,
+    genres:IGenre[],
     isLoading: boolean
 }
 
@@ -58,6 +60,7 @@ const initialState: IState = {
         id: 0,
         results: []
     },
+    genres: [],
     isLoading: false,
 }
 
@@ -124,12 +127,24 @@ const getMoviesByGenre = createAsyncThunk<IPagination<IMovies>, ISearchMoviesPar
         }
     }
 );
+const getGenres = createAsyncThunk<IGenre[], void>(
+    'movieSlice/getGenres',
+    async (_, {rejectWithValue}) => {
+        try {
+            const {data} = await moviesService.getGenres();
+            return data;
+        } catch (e) {
+            const err = e as AxiosError;
+            return rejectWithValue(err.response?.data ?? 'Unknown error occurred');
+        }
+    }
+);
 
 const slice = createSlice({
     name: 'movieSlice',
     initialState,
     reducers: {},
-    extraReducers: builder =>
+    extraReducers: builder => {
         builder
             .addCase(getAll.fulfilled, (state, action) => {
                 const {results, page, total_pages} = action.payload;
@@ -152,6 +167,10 @@ const slice = createSlice({
                 state.page = page;
                 state.total_pages = total_pages;
             })
+            .addCase(getGenres.fulfilled, (state, action) => {
+                state.genres = action.payload;
+                console.log(state.genres);
+            })
             .addCase(getVideos.fulfilled, (state, action) => {
                 state.videos = action.payload
             })
@@ -160,13 +179,14 @@ const slice = createSlice({
             })
             .addMatcher(isFulfilled(), (state) => {
                 state.isLoading = false;
-            })
+            });
+    }
 });
 
 const {actions, reducer: moviesReducer} = slice;
 const moviesActions = {
     ...actions,
-    getAll, getDetails, getVideos, searchMovies,getMoviesByGenre
+    getAll, getDetails, getVideos, searchMovies,getMoviesByGenre, getGenres
 };
 
 export {moviesReducer, moviesActions};

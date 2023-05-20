@@ -7,6 +7,7 @@ const urls = {
         movies: '/discover/movie',
         overview:'/movie/',
         video:'/videos',
+        genres: '/genre/movie/list',
         search :'/search/movie?query=',
         getMoviesByGenre:'/discover/movie?with_genres='
     },

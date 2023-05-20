@@ -6,7 +6,7 @@ import {
     IMovieDetailsInterface,
     IVideosContent,
     IVideo,
-    ISearchMoviesParams
+    ISearchMoviesParams, IGenre
 } from "../interfaces";
 import {axiosMoviesService} from "./axios.movie.service";
 import {urls} from "../constants";
@@ -14,6 +14,7 @@ import {urls} from "../constants";
 const moviesService = {
     getAll: (page: number = 1): IRes<IPagination<IMovies>> =>
         axiosMoviesService.get(urls.movies.movies, {params: {page}}),
+    getGenres:():IRes<IGenre[]> =>axiosMoviesService.get(urls.movies.genres),
     getDetails: (id: number): IRes<IMovieDetailsInterface> => axiosMoviesService.get(urls.movies.overview + id),
     getMe: (): IRes<IUser> => axiosMoviesService.get(urls.users.me),
     getMoviesByGenre: (query: ISearchMoviesParams): IRes<IPagination<IMovies>> =>

@@ -12,3 +12,4 @@ export * from './ProductionCompanies/ProductionCompanies';
 export * from './ProductionCompany/ProductionCompany';
 export * from './SpokenLanguages/SpokenLanguages';
 export * from './FunctionalHeader/FunctionalHeader';
+export * from './Filters/Filters';
