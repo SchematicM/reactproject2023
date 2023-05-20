@@ -26,7 +26,7 @@ const MoviesPagination:FC = () => {
     return (
         <div className={'pagination'}>
             <button disabled={page === 1} onClick={prev}> &lt; </button>
-            <button disabled={page===500||page === total_pages} onClick={next}>&gt;</button>
+            <button disabled={page===500||page === total_pages||total_pages===0} onClick={next}>&gt;</button>
         </div>
     );
 };

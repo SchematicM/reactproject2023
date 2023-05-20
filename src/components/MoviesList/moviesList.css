@@ -6,3 +6,6 @@
     row-gap: 20px;
     justify-content: space-between;
 }
+.warning>h2{
+    text-align: center;
+}
