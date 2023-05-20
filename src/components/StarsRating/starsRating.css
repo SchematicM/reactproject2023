@@ -6,7 +6,12 @@
     margin: 5px;
 }
 
+.rating {
+   display: flex;
+}
+
 .rating-number {
+    margin-top: 7px;
     margin-right: 5px;
 }
 
