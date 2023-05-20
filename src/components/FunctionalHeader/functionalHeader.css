@@ -10,6 +10,7 @@ form>input,form>button{
 form>input{
     width: 25vw;
     padding: 5px;
+    color: #868585;
 }
 
 form>button{
@@ -21,4 +22,7 @@ form>button{
     display: flex;
     align-items: center;
     color: #5e5e5e;
+}
+
+form>button>i{
 }
