@@ -15,7 +15,7 @@ const FunctionalHeader: FC = () => {
     return (
             <form onSubmit={handleSubmit(search)} className={'search'}>
                 <input type="text" placeholder="Search" {...register('query', {required: true})} />
-                <button type="submit"><i className="fa fa-search" aria-hidden="true"></i></button>
+                <button type="submit"><i className="fa-sharp fa-solid fa-magnifying-glass fa-sm"></i></button>
             </form>
     );
 };
