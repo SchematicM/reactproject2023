@@ -1,8 +1,9 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect} from 'react';
 
 import './filters.css'
 import {moviesActions} from "../../redux";
 import {useAppDispatch, useAppSelector} from "../../hooks";
+import GenreBadge from "../GenreBadge/GenreBadge";
 
 
 const Filters:FC = () => {
@@ -14,8 +15,8 @@ useEffect(()=>{
     return (
         <div className={'filters'}>
             {
-                // JSON.stringify(genres);
-                // genres.map(genre => (<GenreBadge key = {genre.id} id={genre.id} name={genre.name}/>))
+                // JSON.stringify(genres)
+                genres.map(genre => (<GenreBadge key = {genre.id} id={genre.id} name={genre.name}/>))
             }
         </div>
     );

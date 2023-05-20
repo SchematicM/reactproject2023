@@ -1,5 +1,5 @@
 import {
-    IGenre,
+    IGenre, IGenres,
     IMovieDetailsInterface,
     IMovies,
     IPagination,
@@ -18,6 +18,7 @@ interface IState {
     details: IMovieDetailsInterface,
     videos: IVideosContent<IVideo>,
     genres:IGenre[],
+    chosenGenres:number[],
     isLoading: boolean
 }
 
@@ -61,6 +62,7 @@ const initialState: IState = {
         results: []
     },
     genres: [],
+    chosenGenres:[],
     isLoading: false,
 }
 
@@ -127,7 +129,7 @@ const getMoviesByGenre = createAsyncThunk<IPagination<IMovies>, ISearchMoviesPar
         }
     }
 );
-const getGenres = createAsyncThunk<IGenre[], void>(
+const getGenres = createAsyncThunk<IGenres, void>(
     'movieSlice/getGenres',
     async (_, {rejectWithValue}) => {
         try {
@@ -168,8 +170,7 @@ const slice = createSlice({
                 state.total_pages = total_pages;
             })
             .addCase(getGenres.fulfilled, (state, action) => {
-                state.genres = action.payload;
-                console.log(state.genres);
+                state.genres = action.payload.genres;
             })
             .addCase(getVideos.fulfilled, (state, action) => {
                 state.videos = action.payload
