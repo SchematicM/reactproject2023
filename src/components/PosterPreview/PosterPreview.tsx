@@ -12,7 +12,10 @@ interface IProps{
 const PosterPreview:FC<IProps> = ({movie}) => {
     return (
         <div className={'poster-preview'}>
-            <img src={basePosterURL+movie.poster_path} alt = {movie.title + ' poster'}/>
+            <img
+                loading = "lazy"
+                src={basePosterURL+movie.poster_path}
+                alt = {movie.title + ' poster'}/>
         </div>
     );
 };
